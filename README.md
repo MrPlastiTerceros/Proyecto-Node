@@ -1,2 +1,2 @@
 # Proyecto-Node
-Clase de Node.JS-ComIT
+Proyecto en grupo.Curso de Node.JS-ComIT
