@@ -1,10 +1,9 @@
 var divContenedorBotonesUsuario = document.getElementById("divBotones");
 var divContenedorListaPosts = document.getElementById("div-contenedor-lista-posts");
-var listaUsuarios = []
-consultarListaUsuarios();
+var listaUsuarios = consultarListaUsuarios();
 
 if (listaUsuarios != undefined) {
-    for (var i = 0; i < listaUsuarios.length; i++) {
+    for (let i = 0; i < listaUsuarios.length; i++) {
         agregarBoton(listaUsuarios[i].nombre, listaUsuarios[i].id)
     }
 
@@ -17,7 +16,7 @@ if (listaUsuarios != undefined) {
 
 - verPostsUsuario(idUsuario): Consulta y muestra los posts creados por el usuario indicado
 
-- consultarListaUsuarios(): Consulta y devuelve la lista de usuarios en un array
+- consultarListaUsuarios(): Consulta y devuelve la lista de usuarios en un array   divcontenedorListaPost.appendChild(divchild);
 
 - consultarListaPostsUsuario(idUsuario): Consulta y devuelve la lista de posts para un usuario
 */
@@ -59,8 +58,14 @@ function verPostsUsuario(idUsuario) {
     let listaPosts = consultarListaPostsUsuario(idUsuario);
 
     for (let i = 0; i < listaPosts.length; i++) {
-        /*
-            TODO:
+        let divchild = document.createElement("div");
+
+        divchild.setAttribute("class", "post");
+
+        divchild.appendChild(document.createTextNode(listaPosts[i].titulo));
+
+        divContenedorListaPosts.appendChild(divchild);
+        /*  TODO:
             - Crear un div
             - Ponerle clase "post"
             - Agregarle como texto (textNode) el título del post
@@ -90,6 +95,7 @@ function verPostsUsuario(idUsuario) {
  *
  */
 function consultarListaPostsUsuario(idUsuario) {
+
     let respuesta = []
     switch (idUsuario) {
         case 1:
@@ -121,7 +127,6 @@ function consultarListaPostsUsuario(idUsuario) {
     console.log(respuesta);
     return respuesta;
     /*
-
     TODO: generar el código necesario para que según el
      idUsuario recibido devuelva resultados diferentes.
     En todos los casos, lo que hacemos es agregar 
@@ -133,7 +138,6 @@ function consultarListaPostsUsuario(idUsuario) {
         titulo: <string>,
         contenido: <string>
     }
-
     */
 }
 /**
@@ -144,7 +148,8 @@ function consultarListaPostsUsuario(idUsuario) {
  *
  */
 function consultarListaUsuarios() {
-    listaUsuarios.push({
+    let listaDeUsuarios = []
+    listaDeUsuarios.push({
         id: 1,
         nombre: 'Ana'
     }, {
@@ -154,6 +159,7 @@ function consultarListaUsuarios() {
             id: 3,
             nombre: 'Ariana'
         })
+    return listaDeUsuarios
     /*
     TODO: generar el código para que la función cree y 
     devuelva un array de objetos con la estructura:
