@@ -1,7 +1,6 @@
 var divContenedorBotonesUsuario = document.getElementById("divBotones");
 var divContenedorListaPosts = document.getElementById("div-contenedor-lista-posts");
 var listaUsuarios = []
-var respuesta = [];
 consultarListaUsuarios();
 
 if (listaUsuarios != undefined) {
@@ -91,7 +90,7 @@ function verPostsUsuario(idUsuario) {
  *
  */
 function consultarListaPostsUsuario(idUsuario) {
-
+    let respuesta = []
     switch (idUsuario) {
         case 1:
             respuesta.push(
