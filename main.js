@@ -1,6 +1,12 @@
+//web-app
+
 var divContenedorBotonesUsuario = document.getElementById("divBotones");
 var divContenedorListaPosts = document.getElementById("div-contenedor-lista-posts");
-var listaUsuarios = consultarListaUsuarios();
+
+
+consultarListaUsuarios();
+
+
 
 if (listaUsuarios != undefined) {
     for (let i = 0; i < listaUsuarios.length; i++) {
@@ -65,15 +71,8 @@ function verPostsUsuario(idUsuario) {
         divchild.appendChild(document.createTextNode(listaPosts[i].titulo));
 
         divContenedorListaPosts.appendChild(divchild);
-        /*  TODO:
-            - Crear un div
-            - Ponerle clase "post"
-            - Agregarle como texto (textNode) el título del post
-             que está "iterando" en el FOR
-            - Colocar ("append") ese div nuevo en el 
-            divContenedorListaPosts
-
-            Si tienen ganas y pueden, agreguen validaciones:
+        
+        /*  Si tienen ganas y pueden, agreguen validaciones:
             - Que el título exista (que la propiedad "titulo"
              no sea undefined)
             - Que el título no esté vacío (que la propiedad 
@@ -147,25 +146,27 @@ function consultarListaPostsUsuario(idUsuario) {
  * {id, nombre}
  *
  */
+
+
+
 function consultarListaUsuarios() {
-    let listaDeUsuarios = []
-    listaDeUsuarios.push({
-        id: 1,
-        nombre: 'Ana'
-    }, {
-            id: 2,
-            nombre: 'Jezabel'
-        }, {
-            id: 3,
-            nombre: 'Ariana'
-        })
-    return listaDeUsuarios
-    /*
-    TODO: generar el código para que la función cree y 
-    devuelva un array de objetos con la estructura:
-    {
-        id: <number>,
-        nombre: <string>
+    var request = new XMLHttpRequest();
+    
+    request.onreadystatechange = function () {
+        let obj
+        if(this.readyState == 4 && this.status == 200){
+            obj = parseador(request.responseText);
+            procesarLista(obj)
+        }
+        console.log(obj);
     }
-    */
+    
+    request.open('GET','https://jsonplaceholder.typicode.com/users');
+    request.send();
+    
 }
+
+function parseador(json) {
+    return JSON.parse(json);
+}
+
